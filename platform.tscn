@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx0m74x87f2wr"]
+
+[ext_resource type="Texture2D" uid="uid://diyeme6m8bi80" path="res://assets/sprites/platforms.png" id="1_ay461"]
+[ext_resource type="Script" path="res://platform.gd" id="1_rph2k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vo25w"]
+size = Vector2(16, 8)
+
+[node name="Platform" type="AnimatableBody2D"]
+script = ExtResource("1_rph2k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ay461")
+region_enabled = true
+region_rect = Rect2(0.322639, 0.161577, 15.6774, 8.83842)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.01826, 1)
+shape = SubResource("RectangleShape2D_vo25w")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.5, -0.5)
+scale = Vector2(0.85, 0.45)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
