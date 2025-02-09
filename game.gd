@@ -3,6 +3,8 @@ extends Node2D
 var score = 0
 
 @onready var obstacle_scene = preload("res://obstacle.tscn")
+
+@onready var scoreLabel = $Score;
 var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,7 +13,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	scoreLabel.text = str(score)
 
 
 func _on_timer_timeout():
@@ -23,4 +25,4 @@ func _on_timer_timeout():
 
 func _on_obstacle_passed():
 	score +=1
-	print_debug(score)
+
