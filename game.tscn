@@ -6,7 +6,6 @@
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_hemeh")
-obstacle_scene = ExtResource("2_3s7mh")
 
 [node name="Player" parent="." instance=ExtResource("1_exf78")]
 
@@ -17,6 +16,8 @@ zoom = Vector2(4, 4)
 position = Vector2(131, 56)
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
 autostart = true
 
+[connection signal="passed" from="Obstacle" to="." method="_on_obstacle_passed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

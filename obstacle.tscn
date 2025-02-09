@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsvn6xljlu423"]
+[gd_scene load_steps=7 format=3 uid="uid://dsvn6xljlu423"]
 
 [ext_resource type="Script" path="res://obstacle.gd" id="1_1hbpc"]
 [ext_resource type="PackedScene" uid="uid://boohobaebewr" path="res://topBlock.tscn" id="1_r6gte"]
@@ -9,6 +9,9 @@ size = Vector2(16, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hmcj"]
 size = Vector2(16, 125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwjkc"]
+size = Vector2(20, 64)
 
 [node name="Obstacle" type="Node2D"]
 script = ExtResource("1_1hbpc")
@@ -77,4 +80,12 @@ shape = SubResource("RectangleShape2D_6hmcj")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -33)
+shape = SubResource("RectangleShape2D_wwjkc")
+
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
