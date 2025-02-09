@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsvn6xljlu423"]
+
+[ext_resource type="Script" path="res://obstacle.gd" id="1_1hbpc"]
+[ext_resource type="PackedScene" uid="uid://boohobaebewr" path="res://topBlock.tscn" id="1_r6gte"]
+[ext_resource type="PackedScene" uid="uid://bnoxijlpclteh" path="res://midBlock.tscn" id="2_3skjc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6lln"]
+size = Vector2(16, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hmcj"]
+size = Vector2(16, 125)
+
+[node name="Obstacle" type="Node2D"]
+script = ExtResource("1_1hbpc")
+
+[node name="BottomPart" type="StaticBody2D" parent="."]
+
+[node name="TopBlock" parent="BottomPart" instance=ExtResource("1_r6gte")]
+position = Vector2(0, 8)
+
+[node name="MidBlock" parent="BottomPart" instance=ExtResource("2_3skjc")]
+position = Vector2(0, 24)
+
+[node name="MidBlock2" parent="BottomPart" instance=ExtResource("2_3skjc")]
+position = Vector2(0, 40)
+
+[node name="MidBlock3" parent="BottomPart" instance=ExtResource("2_3skjc")]
+position = Vector2(0, 56)
+
+[node name="MidBlock4" parent="BottomPart" instance=ExtResource("2_3skjc")]
+position = Vector2(0, 72)
+
+[node name="MidBlock5" parent="BottomPart" instance=ExtResource("2_3skjc")]
+position = Vector2(0, 88)
+
+[node name="MidBlock6" parent="BottomPart" instance=ExtResource("2_3skjc")]
+position = Vector2(0, 104)
+
+[node name="MidBlock7" parent="BottomPart" instance=ExtResource("2_3skjc")]
+position = Vector2(0, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPart"]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_x6lln")
+
+[node name="BottomPart2" type="StaticBody2D" parent="."]
+position = Vector2(0, -129)
+
+[node name="TopBlock" parent="BottomPart2" instance=ExtResource("1_r6gte")]
+position = Vector2(0, 56)
+rotation = -3.14159
+
+[node name="MidBlock" parent="BottomPart2" instance=ExtResource("2_3skjc")]
+position = Vector2(0, 24)
+
+[node name="MidBlock2" parent="BottomPart2" instance=ExtResource("2_3skjc")]
+position = Vector2(0, 40)
+
+[node name="MidBlock3" parent="BottomPart2" instance=ExtResource("2_3skjc")]
+position = Vector2(0, -54)
+
+[node name="MidBlock4" parent="BottomPart2" instance=ExtResource("2_3skjc")]
+position = Vector2(0, -38)
+
+[node name="MidBlock5" parent="BottomPart2" instance=ExtResource("2_3skjc")]
+position = Vector2(0, -22)
+
+[node name="MidBlock6" parent="BottomPart2" instance=ExtResource("2_3skjc")]
+position = Vector2(0, -7)
+
+[node name="MidBlock7" parent="BottomPart2" instance=ExtResource("2_3skjc")]
+position = Vector2(0, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPart2"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_6hmcj")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

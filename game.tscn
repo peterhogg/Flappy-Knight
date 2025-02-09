@@ -1,28 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://bt25uvuhc6kqf"]
+[gd_scene load_steps=4 format=3 uid="uid://bt25uvuhc6kqf"]
 
 [ext_resource type="PackedScene" uid="uid://bwnjn7t8ceax6" path="res://player.tscn" id="1_exf78"]
-[ext_resource type="PackedScene" uid="uid://dx0m74x87f2wr" path="res://platform.tscn" id="2_kw5c2"]
+[ext_resource type="Script" path="res://game.gd" id="1_hemeh"]
+[ext_resource type="PackedScene" uid="uid://dsvn6xljlu423" path="res://obstacle.tscn" id="2_3s7mh"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_hemeh")
+obstacle_scene = ExtResource("2_3s7mh")
 
 [node name="Player" parent="." instance=ExtResource("1_exf78")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
-[node name="Platforms" type="Node" parent="."]
+[node name="Obstacle" parent="." instance=ExtResource("2_3s7mh")]
+position = Vector2(131, 56)
 
-[node name="Platform" parent="Platforms" instance=ExtResource("2_kw5c2")]
-position = Vector2(66, 17)
+[node name="Timer" type="Timer" parent="."]
+autostart = true
 
-[node name="Platform2" parent="Platforms" instance=ExtResource("2_kw5c2")]
-position = Vector2(318, 71)
-
-[node name="Platform3" parent="Platforms" instance=ExtResource("2_kw5c2")]
-position = Vector2(253, 20)
-
-[node name="Platform4" parent="Platforms" instance=ExtResource("2_kw5c2")]
-position = Vector2(208, -57)
-
-[node name="Platform5" parent="Platforms" instance=ExtResource("2_kw5c2")]
-position = Vector2(132, -2)
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
