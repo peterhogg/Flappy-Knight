@@ -7,6 +7,7 @@
 size = Vector2(16, 8)
 
 [node name="Platform" type="AnimatableBody2D"]
+collision_layer = 2
 script = ExtResource("1_rph2k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

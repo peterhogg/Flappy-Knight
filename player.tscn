@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwnjn7t8ceax6"]
+[gd_scene load_steps=9 format=3 uid="uid://bwnjn7t8ceax6"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_102fx"]
 [ext_resource type="Texture2D" uid="uid://dy0d2haea11jo" path="res://assets/sprites/knight.png" id="1_ecqbo"]
@@ -7,25 +7,9 @@
 atlas = ExtResource("1_ecqbo")
 region = Rect2(32, 160, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0o8ea"]
-atlas = ExtResource("1_ecqbo")
-region = Rect2(64, 160, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ofw1x"]
-atlas = ExtResource("1_ecqbo")
-region = Rect2(192, 160, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_dg1lj"]
 atlas = ExtResource("1_ecqbo")
 region = Rect2(224, 160, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i5uo5"]
-atlas = ExtResource("1_ecqbo")
-region = Rect2(0, 160, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4pmv3"]
-atlas = ExtResource("1_ecqbo")
-region = Rect2(32, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptbsn"]
 atlas = ExtResource("1_ecqbo")
@@ -42,12 +26,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_57ged")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0o8ea")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ofw1x")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_dg1lj")
 }],
 "loop": true,
@@ -55,12 +33,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i5uo5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4pmv3")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ptbsn")
 }, {
@@ -81,9 +53,10 @@ script = ExtResource("1_102fx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_r5bn1")
-animation = &"falling"
+animation = &"jump"
 autoplay = "falling"
-frame_progress = 0.556162
+frame = 1
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_b7xpo")
