@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bnoxijlpclteh" path="res://midBlock.tscn" id="2_3skjc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6lln"]
-size = Vector2(16, 128)
+size = Vector2(11, 118)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hmcj"]
-size = Vector2(16, 125)
+size = Vector2(14, 123)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwjkc"]
 size = Vector2(20, 64)
@@ -51,7 +51,7 @@ position = Vector2(0, 64)
 shape = SubResource("RectangleShape2D_x6lln")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPart"]
-position = Vector2(0, 64)
+position = Vector2(0.5, 69)
 shape = SubResource("RectangleShape2D_x6lln")
 
 [node name="TopPart" type="StaticBody2D" parent="."]
@@ -91,18 +91,20 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_6hmcj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopPart"]
-position = Vector2(0, 0.5)
+position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_6hmcj")
+debug_color = Color(0.721569, 0.384314, 0.745098, 0.419608)
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="ScoreArea" type="Area2D" parent="."]
+collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea"]
 position = Vector2(0, -33)
 shape = SubResource("RectangleShape2D_wwjkc")
 
 [connection signal="body_entered" from="BottomPart/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="TopPart/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_exited" from="ScoreArea" to="." method="_on_area_2d_body_exited"]

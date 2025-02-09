@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt25uvuhc6kqf"]
+[gd_scene load_steps=6 format=3 uid="uid://bt25uvuhc6kqf"]
 
 [ext_resource type="PackedScene" uid="uid://bwnjn7t8ceax6" path="res://player.tscn" id="1_exf78"]
 [ext_resource type="Script" path="res://game.gd" id="1_hemeh"]
 [ext_resource type="PackedScene" uid="uid://dsvn6xljlu423" path="res://obstacle.tscn" id="2_3s7mh"]
 [ext_resource type="FontFile" uid="uid://dprey0j673mg2" path="res://assets/fonts/PixelOperator8.ttf" id="4_jlx1g"]
+[ext_resource type="FontFile" uid="uid://c4b6qd2o7qi74" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_jbbd6"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_hemeh")
@@ -29,6 +30,45 @@ offset_right = -92.0
 offset_bottom = -31.0
 theme_override_fonts/normal_font = ExtResource("4_jlx1g")
 text = "0"
+
+[node name="EndGameCanvas" type="CanvasGroup" parent="."]
+visible = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="EndGameCanvas"]
+offset_left = -83.0
+offset_top = -55.0
+offset_right = 83.0
+offset_bottom = -7.0
+theme_override_fonts/normal_font = ExtResource("4_jlx1g")
+theme_override_fonts/bold_font = ExtResource("5_jbbd6")
+bbcode_enabled = true
+text = "[center] YOU DIED [/center]
+
+
+"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="EndGameCanvas"]
+offset_left = -83.0
+offset_top = -12.0
+offset_right = 83.0
+offset_bottom = 36.0
+theme_override_fonts/normal_font = ExtResource("4_jlx1g")
+theme_override_fonts/bold_font = ExtResource("5_jbbd6")
+bbcode_enabled = true
+text = "[center] Total: 0 [/center]
+
+
+"
+fit_content = true
+
+[node name="Button" type="Button" parent="EndGameCanvas"]
+offset_left = -62.0
+offset_top = 34.0
+offset_right = 62.0
+offset_bottom = 65.0
+theme_override_fonts/font = ExtResource("4_jlx1g")
+text = "Try Again"
 
 [connection signal="passed" from="Obstacle" to="." method="_on_obstacle_passed"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]

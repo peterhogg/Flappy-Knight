@@ -5,6 +5,7 @@ var score = 0
 @onready var obstacle_scene = preload("res://obstacle.tscn")
 
 @onready var scoreLabel = $Score;
+@onready var endGameCanvas = $EndGameCanvas
 @onready var timer = $SpawnTimer;
 var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
@@ -29,6 +30,10 @@ func _on_obstacle_passed():
 	score +=1
 
 func _on_obstacle_died():
-	timer.stop()
-	get_tree().reload_current_scene()
+	timer.stop();
+	scoreLabel.visible = false;
+	endGameCanvas.visible = true;
+	# get_tree().reload_current_scene()
+	
+
 
