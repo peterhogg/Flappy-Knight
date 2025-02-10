@@ -16,8 +16,11 @@ size = Vector2(20, 64)
 [node name="Obstacle" type="Node2D"]
 script = ExtResource("1_1hbpc")
 
-[node name="BottomPart" type="StaticBody2D" parent="."]
-collision_layer = 2
+[node name="BottomPart" type="RigidBody2D" parent="."]
+max_contacts_reported = 1
+contact_monitor = true
+freeze = true
+freeze_mode = 1
 
 [node name="TopBlock" parent="BottomPart" instance=ExtResource("1_r6gte")]
 position = Vector2(0, 8)
@@ -43,20 +46,17 @@ position = Vector2(0, 104)
 [node name="MidBlock7" parent="BottomPart" instance=ExtResource("2_3skjc")]
 position = Vector2(0, 120)
 
-[node name="Area2D" type="Area2D" parent="BottomPart"]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPart/Area2D"]
-position = Vector2(0, 64)
-shape = SubResource("RectangleShape2D_x6lln")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPart"]
 position = Vector2(0.5, 69)
 shape = SubResource("RectangleShape2D_x6lln")
 
-[node name="TopPart" type="StaticBody2D" parent="."]
+[node name="TopPart" type="RigidBody2D" parent="."]
 position = Vector2(0, -129)
 collision_layer = 2
+max_contacts_reported = 1
+contact_monitor = true
+freeze = true
+freeze_mode = 1
 
 [node name="TopBlock" parent="TopPart" instance=ExtResource("1_r6gte")]
 position = Vector2(0, 56)
@@ -83,13 +83,6 @@ position = Vector2(0, -7)
 [node name="MidBlock7" parent="TopPart" instance=ExtResource("2_3skjc")]
 position = Vector2(0, 9)
 
-[node name="Area2D" type="Area2D" parent="TopPart"]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopPart/Area2D"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_6hmcj")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopPart"]
 position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_6hmcj")
@@ -104,7 +97,8 @@ collision_layer = 2
 position = Vector2(0, -33)
 shape = SubResource("RectangleShape2D_wwjkc")
 
-[connection signal="body_entered" from="BottomPart/Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="TopPart/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="BottomPart" to="." method="_on_bottom_part_body_entered"]
+[connection signal="body_entered" from="TopPart" to="." method="_on_top_part_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
 [connection signal="body_exited" from="ScoreArea" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_exited" from="ScoreArea" to="." method="_on_score_area_body_exited"]

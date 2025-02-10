@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bt25uvuhc6kqf"]
+[gd_scene load_steps=5 format=3 uid="uid://bt25uvuhc6kqf"]
 
 [ext_resource type="PackedScene" uid="uid://bwnjn7t8ceax6" path="res://player.tscn" id="1_exf78"]
 [ext_resource type="Script" path="res://game.gd" id="1_hemeh"]
-[ext_resource type="PackedScene" uid="uid://dsvn6xljlu423" path="res://obstacle.tscn" id="2_3s7mh"]
 [ext_resource type="FontFile" uid="uid://dprey0j673mg2" path="res://assets/fonts/PixelOperator8.ttf" id="4_jlx1g"]
 [ext_resource type="FontFile" uid="uid://c4b6qd2o7qi74" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_jbbd6"]
 
@@ -13,9 +12,6 @@ script = ExtResource("1_hemeh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
-
-[node name="Obstacle" parent="." instance=ExtResource("2_3s7mh")]
-position = Vector2(131, 56)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 1.5
@@ -48,7 +44,7 @@ text = "[center] YOU DIED [/center]
 "
 fit_content = true
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="EndGameCanvas"]
+[node name="TotalScoreLabel" type="RichTextLabel" parent="EndGameCanvas"]
 offset_left = -83.0
 offset_top = -12.0
 offset_right = 83.0
@@ -62,7 +58,7 @@ text = "[center] Total: 0 [/center]
 "
 fit_content = true
 
-[node name="Button" type="Button" parent="EndGameCanvas"]
+[node name="PlayAgainButton" type="Button" parent="EndGameCanvas"]
 offset_left = -62.0
 offset_top = 34.0
 offset_right = 62.0
@@ -70,5 +66,5 @@ offset_bottom = 65.0
 theme_override_fonts/font = ExtResource("4_jlx1g")
 text = "Try Again"
 
-[connection signal="passed" from="Obstacle" to="." method="_on_obstacle_passed"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="EndGameCanvas/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
