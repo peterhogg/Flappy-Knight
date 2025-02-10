@@ -1,12 +1,14 @@
 extends Node2D
 
 var score = 0
+var highscore = 0
 
 @onready var obstacle_scene = preload("res://obstacle.tscn")
 
 @onready var scoreLabel = $Score;
 @onready var endGameCanvas = $EndGameCanvas
 @onready var totalScoreLabel = $EndGameCanvas/TotalScoreLabel
+@onready var highScoreLabel = $EndGameCanvas/HighScoreLabel
 @onready var timer = $SpawnTimer;
 @onready var player = $Player;
 @onready var obstacles = $Obstacles;
@@ -15,6 +17,7 @@ var dead = false
 var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	load_file()
 	player.died.connect(_on_death)
 	spawn_obstacle()
 
@@ -45,9 +48,24 @@ func _on_death():
 	timer.stop();
 	scoreLabel.visible = false;
 	endGameCanvas.visible = true;
+	if(score > highscore):
+		highscore = score
+		save_file(str(highscore))
 	totalScoreLabel.text = "[center]Total: %s[/center]" % score
+	highScoreLabel.text = "[center]Highscore: %s[/center]" % highscore
 	player.isDead = true
 	
 func _on_play_again_button_pressed():
 	get_tree().reload_current_scene()
 	pass # Replace with function body.
+
+func save_file(content):
+	var file = FileAccess.open("user://highscore", FileAccess.WRITE)
+	file.store_string(content)
+
+func load_file():
+	var file = FileAccess.open("user://highscore", FileAccess.READ)
+	if(!file):
+		return
+	var content = file.get_as_text()
+	highscore = int(content)
