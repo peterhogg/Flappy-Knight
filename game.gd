@@ -9,12 +9,14 @@ var score = 0
 @onready var totalScoreLabel = $EndGameCanvas/TotalScoreLabel
 @onready var timer = $SpawnTimer;
 @onready var player = $Player;
+@onready var obstacles = $Obstacles;
+
 var dead = false
 var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player.died.connect(_on_death)
-
+	spawn_obstacle()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -22,11 +24,15 @@ func _process(_delta):
 
 
 func _on_timer_timeout():
+	spawn_obstacle()
+
+func spawn_obstacle():
 	var obstacle = obstacle_scene.instantiate()
 	obstacle.position = Vector2(150,rng.randf_range(-4, 64))
 	obstacle.passed.connect(_on_obstacle_passed)
 	obstacle.died.connect(_on_death)
-	add_child(obstacle)
+	obstacles.add_child(obstacle)
+	
 
 
 func _on_obstacle_passed():
