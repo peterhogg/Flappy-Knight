@@ -9,6 +9,7 @@ var score = 0
 @onready var totalScoreLabel = $EndGameCanvas/TotalScoreLabel
 @onready var timer = $SpawnTimer;
 @onready var player = $Player;
+var dead = false
 var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,9 +30,12 @@ func _on_timer_timeout():
 
 
 func _on_obstacle_passed():
+	if(dead):
+		return
 	score +=1
 
 func _on_death():
+	dead = true
 	timer.stop();
 	scoreLabel.visible = false;
 	endGameCanvas.visible = true;

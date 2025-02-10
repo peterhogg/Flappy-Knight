@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bnoxijlpclteh" path="res://midBlock.tscn" id="2_3skjc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6lln"]
-size = Vector2(11, 118)
+size = Vector2(14, 127)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hmcj"]
-size = Vector2(14, 123)
+size = Vector2(15, 125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwjkc"]
 size = Vector2(20, 64)
@@ -47,7 +47,7 @@ position = Vector2(0, 104)
 position = Vector2(0, 120)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPart"]
-position = Vector2(0.5, 69)
+position = Vector2(0, 64.5)
 shape = SubResource("RectangleShape2D_x6lln")
 
 [node name="TopPart" type="RigidBody2D" parent="."]
@@ -84,7 +84,7 @@ position = Vector2(0, -7)
 position = Vector2(0, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopPart"]
-position = Vector2(-1, -0.5)
+position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_6hmcj")
 debug_color = Color(0.721569, 0.384314, 0.745098, 0.419608)
 
