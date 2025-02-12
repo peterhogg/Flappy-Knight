@@ -8,13 +8,16 @@ var isJumping = false
 var isDead = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var deadgravity = gravity * 1.5
 @onready var animator = $AnimatedSprite2D;
 
 signal died
 
 func _physics_process(delta):
 	# Add the gravity.
-	if not is_on_floor():
+	if(isDead):
+		velocity.y += deadgravity * delta
+	else:
 		velocity.y += gravity * delta
 
 	# Handle Jump.

@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://boohobaebewr" path="res://topBlock.tscn" id="1_r6gte"]
 [ext_resource type="PackedScene" uid="uid://bnoxijlpclteh" path="res://midBlock.tscn" id="2_3skjc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6lln"]
-size = Vector2(14, 127)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tf6nw"]
+size = Vector2(16, 128)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hmcj"]
-size = Vector2(15, 125)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmrag"]
+size = Vector2(16, 125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwjkc"]
 size = Vector2(20, 64)
@@ -17,6 +17,7 @@ size = Vector2(20, 64)
 script = ExtResource("1_1hbpc")
 
 [node name="BottomPart" type="RigidBody2D" parent="."]
+collision_layer = 2
 max_contacts_reported = 1
 contact_monitor = true
 freeze = true
@@ -47,8 +48,8 @@ position = Vector2(0, 104)
 position = Vector2(0, 120)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPart"]
-position = Vector2(0, 64.5)
-shape = SubResource("RectangleShape2D_x6lln")
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_tf6nw")
 
 [node name="TopPart" type="RigidBody2D" parent="."]
 position = Vector2(0, -129)
@@ -84,9 +85,8 @@ position = Vector2(0, -7)
 position = Vector2(0, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopPart"]
-position = Vector2(-0.5, 0.5)
-shape = SubResource("RectangleShape2D_6hmcj")
-debug_color = Color(0.721569, 0.384314, 0.745098, 0.419608)
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_pmrag")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 
@@ -100,5 +100,5 @@ shape = SubResource("RectangleShape2D_wwjkc")
 [connection signal="body_entered" from="BottomPart" to="." method="_on_bottom_part_body_entered"]
 [connection signal="body_entered" from="TopPart" to="." method="_on_top_part_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
-[connection signal="body_exited" from="ScoreArea" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_exited" from="ScoreArea" to="." method="_on_score_area_body_exited"]
+[connection signal="body_exited" from="ScoreArea" to="." method="_on_area_2d_body_exited"]
