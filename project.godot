@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Flappy Knight"
-run/main_scene="res://game.tscn"
+run/main_scene="res://start_game.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/resizable=false
 
 [physics]
 

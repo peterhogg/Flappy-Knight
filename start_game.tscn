@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxsyacjk11xi8"]
+
+[ext_resource type="PackedScene" uid="uid://bf63ig3l54fhm" path="res://background.tscn" id="1_e8sly"]
+[ext_resource type="Script" path="res://start_game.gd" id="1_kew4j"]
+[ext_resource type="FontFile" uid="uid://dprey0j673mg2" path="res://assets/fonts/PixelOperator8.ttf" id="1_nquu2"]
+[ext_resource type="FontFile" uid="uid://c4b6qd2o7qi74" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_j75i2"]
+[ext_resource type="PackedScene" uid="uid://cxxxu1dmvasxt" path="res://camera.tscn" id="4_do2fo"]
+
+[node name="StartGame" type="Node"]
+script = ExtResource("1_kew4j")
+
+[node name="Camera2D" parent="." instance=ExtResource("4_do2fo")]
+
+[node name="Background" parent="." instance=ExtResource("1_e8sly")]
+
+[node name="StartGameCanvas" type="CanvasGroup" parent="."]
+
+[node name="Title" type="RichTextLabel" parent="StartGameCanvas"]
+offset_left = -145.0
+offset_top = -27.0
+offset_right = 143.0
+offset_bottom = 21.0
+theme_override_fonts/normal_font = ExtResource("1_nquu2")
+theme_override_fonts/bold_font = ExtResource("2_j75i2")
+bbcode_enabled = true
+text = "[center] Flappy Knight [/center]
+
+
+"
+fit_content = true
+
+[node name="PlayButton" type="Button" parent="StartGameCanvas"]
+offset_left = -62.0
+offset_top = -4.0
+offset_right = 62.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("1_nquu2")
+text = "Start"
+
+[connection signal="pressed" from="StartGameCanvas/PlayButton" to="." method="_on_play_button_pressed"]
