@@ -10,8 +10,16 @@ var isDead = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var deadgravity = gravity * 1.5
 @onready var animator = $AnimatedSprite2D;
+var triggerJumpByTouch: bool = false
 
 signal died
+
+func _input(event):
+	if event is InputEventScreenTouch:
+		if event.is_pressed():
+			triggerJumpByTouch = true
+		else:
+			triggerJumpByTouch = false
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -21,7 +29,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") && !isJumping && !isDead:
+	if (Input.is_action_just_pressed("jump") || triggerJumpByTouch) && !isJumping && !isDead:
 		isJumping = true
 		animator.play("jump")
 		velocity.y = JUMP_VELOCITY
