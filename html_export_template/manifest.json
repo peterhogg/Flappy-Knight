@@ -1,0 +1,16 @@
+{
+  "lang": "en-us",
+  "name": "Flappy Knight",
+  "short_name": "Flappy Knight",
+  "start_url": "/",
+  "background_color": "#fad3b3",
+  "theme_color": "#fad3b3",
+  "orientation": "landscape",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512"
+    }
+  ]
+}
