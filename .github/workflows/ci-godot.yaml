@@ -3,7 +3,7 @@
 name: CI
 
 env:
-  GODOT_VERSION: 4.2.2
+  GODOT_VERSION: 4.3
 
 permissions:
   contents: write
@@ -22,7 +22,7 @@ jobs:
     name: Web Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.2.2
+      image: barichello/godot-ci:4.3
     steps:
       - name: Install Git in container
         run: |
