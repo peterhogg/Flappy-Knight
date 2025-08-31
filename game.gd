@@ -69,3 +69,7 @@ func load_file():
 		return
 	var content = file.get_as_text()
 	highscore = int(content)
+
+
+func _on_button_pressed() -> void:
+	get_tree().paused = !get_tree().paused

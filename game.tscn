@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bt25uvuhc6kqf"]
+[gd_scene load_steps=19 format=3 uid="uid://bt25uvuhc6kqf"]
 
 [ext_resource type="PackedScene" uid="uid://bwnjn7t8ceax6" path="res://player.tscn" id="1_exf78"]
 [ext_resource type="Script" path="res://game.gd" id="1_hemeh"]
@@ -6,6 +6,31 @@
 [ext_resource type="FontFile" uid="uid://dprey0j673mg2" path="res://assets/fonts/PixelOperator8.ttf" id="4_jlx1g"]
 [ext_resource type="PackedScene" uid="uid://cxxxu1dmvasxt" path="res://camera.tscn" id="4_w1w48"]
 [ext_resource type="FontFile" uid="uid://c4b6qd2o7qi74" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_jbbd6"]
+
+[sub_resource type="Theme" id="Theme_ee1c4"]
+default_font = ExtResource("4_jlx1g")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_60kbp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3uhpd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6dxsy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rx5m0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_epmgd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b47bp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pr758"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6qy6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yyrjr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6jcyb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7lo17"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_hemeh")
@@ -15,6 +40,7 @@ script = ExtResource("1_hemeh")
 [node name="Obstacles" type="Node" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_exf78")]
+disable_mode = 2
 
 [node name="Camera2D" parent="." instance=ExtResource("4_w1w48")]
 
@@ -31,6 +57,30 @@ offset_right = -92.0
 offset_bottom = -31.0
 theme_override_fonts/normal_font = ExtResource("4_jlx1g")
 text = "0"
+
+[node name="Button" type="Button" parent="."]
+process_mode = 3
+z_index = 3
+offset_left = 100.0
+offset_top = -72.0
+offset_right = 128.0
+offset_bottom = -48.0
+theme = SubResource("Theme_ee1c4")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_60kbp")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_3uhpd")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6dxsy")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_rx5m0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_epmgd")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_b47bp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_pr758")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_h6qy6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_yyrjr")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_6jcyb")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7lo17")
+action_mode = 0
+text = "||"
+icon_alignment = 1
 
 [node name="EndGameCanvas" type="CanvasGroup" parent="."]
 visible = false
@@ -86,4 +136,5 @@ theme_override_fonts/font = ExtResource("4_jlx1g")
 text = "Try Again"
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="EndGameCanvas/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
