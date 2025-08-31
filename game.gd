@@ -12,6 +12,7 @@ var highscore = 0
 @onready var timer = $SpawnTimer;
 @onready var player = $Player;
 @onready var obstacles = $Obstacles;
+@onready var pauseButton = $PauseButton;
 
 var dead = false
 var rng = RandomNumberGenerator.new()
@@ -47,6 +48,7 @@ func _on_death():
 	dead = true
 	timer.stop();
 	scoreLabel.visible = false;
+	pauseButton.visible = false;	
 	endGameCanvas.visible = true;
 	if(score > highscore):
 		highscore = score
@@ -72,4 +74,7 @@ func load_file():
 
 
 func _on_button_pressed() -> void:
-	get_tree().paused = !get_tree().paused
+	get_tree().paused = !get_tree().paused;
+
+func _unhandled_input(event):
+	get_viewport().set_input_as_handled()

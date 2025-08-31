@@ -52,6 +52,7 @@ height = 14.0
 script = ExtResource("1_102fx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_r5bn1")
 animation = &"jump"
 autoplay = "falling"
