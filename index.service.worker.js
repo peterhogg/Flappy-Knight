@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1740099352|4345984';
+const CACHE_VERSION = '1756659766|4293798';
 /** @type {string} */
 const CACHE_PREFIX = 'Flappy Knight-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
